@@ -29,7 +29,14 @@ resource "aws_security_group" "ssh_access" {
   }
 }
 
+
+
 resource "aws_instance" "mi_ec2" {
+
+  root_block_device {    
+    encrypted   = true
+  }
+
   ami                    = "ami-012967cc5a8c9f891"
   instance_type          = "t2.micro"
   key_name               = aws_key_pair.mi_key.key_name
@@ -40,7 +47,5 @@ resource "aws_instance" "mi_ec2" {
     Name = "MiInstancia"
   }
 
-root_block_device {    
-    encrypted   = true
-  }
+
 }
